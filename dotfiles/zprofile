@@ -1,0 +1,16 @@
+if [ -f /etc/zprofile ]; then
+	source /etc/zprofile
+fi
+
+if [ -f ~/.ssh/env ]; then
+   source ~/.ssh/env
+fi
+
+export LESS=-iFeRX
+export TERM=xterm-color
+
+export PATH="/Users/jari/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+export JAVA_HOME=$(/usr/libexec/java_home -v11)
