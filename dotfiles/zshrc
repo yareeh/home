@@ -13,6 +13,10 @@ precmd () { __git_ps1 "" ":%~$ " "%s" }
 
 alias grep='grep --color=auto'
 alias ssh='LANG=en ssh'
+
+# Emacs Client
+alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c'
+
 # JavaScript
 alias yadd='yarn add'
 alias yadd-dev='yarn add -D'
