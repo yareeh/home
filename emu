@@ -1,0 +1,9 @@
+#!/bin/sh
+
+emulator="$HOME/Library/Android/sdk/emulator/emulator"
+
+configs=($($emulator -list-avds))
+
+default=${configs[0]}
+
+$emulator -avd $default -dns-server 8.8.8.8 $@

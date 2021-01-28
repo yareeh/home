@@ -19,3 +19,7 @@ Add to launch control
 To test it
 
     launchctl start com.user.loginscript
+
+## Android emulator start script
+
+    ln -sf $(pwd)/emu /usr/local/bin
