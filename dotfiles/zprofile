@@ -15,3 +15,6 @@ export TERM=xterm-color
 
 export JAVA_HOME=$(/usr/libexec/java_home -v11)
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# rust
+PATH="$HOME/.cargo/bin:$PATH"
