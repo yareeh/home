@@ -10,15 +10,7 @@ Link to home
 
 ## Emacs Daemon settings
 
-Add to launch control
-
-    cp startEmacsDaemon.sh /usr/local/bin
-    cp com.user.loginscript.plist ~/Library/LaunchAgents
-    launchctl load ~/Library/LaunchAgents/com.user.loginscript.plist
-
-To test it
-
-    launchctl start com.user.loginscript
+[Gist](https://gist.github.com/redinger/1394910/c0dc6877c158a13760212dbe10b4abb32ae3c4f8)
 
 ## Android emulator start script
 
