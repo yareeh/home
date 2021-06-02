@@ -2,14 +2,15 @@ if [ -f /etc/zshrc ]; then
 	source /etc/zshrc
 fi
 
-source /usr/local/share/antigen/antigen.zsh
+source "$(brew --prefix)/share/antigen/antigen.zsh"
 antigen bundle lukechilds/zsh-nvm
 antigen apply
 
-source /usr/local/etc/bash_completion.d/git-prompt.sh
-GIT_PS1_SHOWDIRTYSTATE="true"
-GIT_PS1_SHOWUPSTREAM="auto"
-precmd () { __git_ps1 "" ":%~$ " "%s" }
+source "$(brew --prefix)/opt/zsh-git-prompt/zshrc.sh"
+#source "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
+#GIT_PS1_SHOWDIRTYSTATE="true"
+#GIT_PS1_SHOWUPSTREAM="auto"
+#precmd () { __git_ps1 "" ":%~$ " "%s" }
 
 alias grep='grep --color=auto'
 alias ssh='LANG=en ssh'
@@ -25,7 +26,7 @@ alias nadd-dev='npm install -D -E'
 
 alias priva-git='git config user.email "jari+git@iki.fi"; git config sendemail.from "jari+git@iki.fi"'
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+#export PATH="$PATH:$HOME/.rvm/bin"
 
 alias oath='ykman oath code -s $@ | pbcopy'
 
@@ -34,7 +35,7 @@ alias oath='ykman oath code -s $@ | pbcopy'
 # Your AWS profile name should also match the yubikey OATH key name for this to work
 awsCliSession () {
   mfa=$(aws iam list-mfa-devices --profile "$1" --query 'MFADevices[0].SerialNumber' --output text)
-  credentials=$(aws sts get-session-token --profile "$1" --serial-number "${mfa}" --token-code $(ykman oath code -s "$1"))
+  credentials=$(aws sts get-session-token --profile "$1" --serial-number "${mfa}" --token-code $(ykman oath accounts code -s "$1"))
   export AWS_PROFILE=$1
   export AWS_ACCESS_KEY_ID=$(echo $credentials | jq -r '.Credentials.AccessKeyId')
   export AWS_SECRET_ACCESS_KEY=$(echo $credentials | jq -r '.Credentials.SecretAccessKey')
@@ -42,3 +43,8 @@ awsCliSession () {
 }
 
 alias awsLogout='unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN'
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
