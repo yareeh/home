@@ -52,3 +52,8 @@ alias analytics_bastion='(export AWS_PROFILE=Roland2;
 aws ec2 describe-instances --filter '\''Name=tag:Name,Values=AnalyticsBastionHost'\'' --query '\''Reservations[*].Instances[*].InstanceId'\'' --output text |
 xargs aws ssm start-session --document-name AWS-StartPortForwardingSession --parameters '\''{"portNumber": ["5432"], "localPortNumber":["9999"]}'\'' --target)
 '
+
+alias analytics_bastion_fairlight='(export AWS_PROFILE=FairlightAdmin;
+aws ec2 describe-instances --filter '\''Name=tag:Name,Values=AnalyticsBastionHost'\'' --query '\''Reservations[*].Instances[*].InstanceId'\'' --output text |
+xargs aws ssm start-session --document-name AWS-StartPortForwardingSession --parameters '\''{"portNumber": ["5432"], "localPortNumber":["8888"]}'\'' --target)
+'
