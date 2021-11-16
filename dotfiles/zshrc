@@ -6,12 +6,6 @@ source "$(brew --prefix)/share/antigen/antigen.zsh"
 antigen bundle lukechilds/zsh-nvm
 antigen apply
 
-source "$(brew --prefix)/opt/zsh-git-prompt/zshrc.sh"
-#source "$(brew --prefix)/etc/bash_completion.d/git-prompt.sh"
-#GIT_PS1_SHOWDIRTYSTATE="true"
-#GIT_PS1_SHOWUPSTREAM="auto"
-#precmd () { __git_ps1 "" ":%~$ " "%s" }
-
 alias grep='grep --color=auto'
 alias ssh='LANG=en ssh'
 
@@ -47,13 +41,3 @@ alias awsLogout='unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_S
 export NVM_DIR="$HOME/.nvm"
 source "$(brew --prefix nvm)/nvm.sh"
 source "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
-
-alias analytics_bastion='(export AWS_PROFILE=Roland2;
-aws ec2 describe-instances --filter '\''Name=tag:Name,Values=AnalyticsBastionHost'\'' --query '\''Reservations[*].Instances[*].InstanceId'\'' --output text |
-xargs aws ssm start-session --document-name AWS-StartPortForwardingSession --parameters '\''{"portNumber": ["5432"], "localPortNumber":["9999"]}'\'' --target)
-'
-
-alias analytics_bastion_fairlight='(export AWS_PROFILE=FairlightAdmin;
-aws ec2 describe-instances --filter '\''Name=tag:Name,Values=AnalyticsBastionHost'\'' --query '\''Reservations[*].Instances[*].InstanceId'\'' --output text |
-xargs aws ssm start-session --document-name AWS-StartPortForwardingSession --parameters '\''{"portNumber": ["5432"], "localPortNumber":["8888"]}'\'' --target)
-'
