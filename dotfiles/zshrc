@@ -2,6 +2,12 @@ if [ -f /etc/zshrc ]; then
 	source /etc/zshrc
 fi
 
+# oh-my-zsh
+export ZSH="/Users/jari/.oh-my-zsh"
+ZSH_THEME="robbyrussell"
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
 source "$(brew --prefix)/share/antigen/antigen.zsh"
 antigen bundle lukechilds/zsh-nvm
 antigen apply
