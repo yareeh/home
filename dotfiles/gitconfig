@@ -1,13 +1,13 @@
 [user]
 	name = Jari Mäkelä
-	email = jari.makela@reaktor.com
+	email = jari+git@iki.fi
 [core]
 	autocrlf = input
 	excludesfile = /Users/jari/.gitignore
 [color]
 	ui = auto
 [sendemail]
-	from = jari.makela@reaktor.com
+	from = jari+git@iki.fi
 [pack]
 	threads = 0
 [diff]
