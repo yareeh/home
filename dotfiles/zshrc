@@ -45,8 +45,8 @@ awsCliSession () {
 alias awsLogout='unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN'
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+source "$(brew --prefix nvm)/nvm.sh"
+source "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
 
 alias analytics_bastion='(export AWS_PROFILE=Roland2;
 aws ec2 describe-instances --filter '\''Name=tag:Name,Values=AnalyticsBastionHost'\'' --query '\''Reservations[*].Instances[*].InstanceId'\'' --output text |
