@@ -47,3 +47,4 @@ alias awsLogout='unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_S
 export NVM_DIR="$HOME/.nvm"
 source "$(brew --prefix nvm)/nvm.sh"
 source "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
+function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
