@@ -4,6 +4,7 @@
 [core]
 	autocrlf = input
 	excludesfile = /Users/jari/.gitignore
+	attributesfile = ~/.gitattributes
 [color]
 	ui = auto
 [sendemail]
@@ -39,10 +40,12 @@
 	commitv = commit -v
 	pullr = pull --rebase
 	amend = commit --amend -C HEAD
+	diff-image = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
 [rerere]
 	enabled = 1
 [push]
 	default = upstream
+  autoSetupRemote = true
 [mergetool "p4mergetool"]
 	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
 	trustExitCode = false
@@ -58,3 +61,5 @@ change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --en
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[diff "image"]
+	command = ~/git/albertine/ios/git-diff-image/git_diff_image
