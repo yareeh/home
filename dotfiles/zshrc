@@ -31,20 +31,6 @@ alias priva-git='git config user.email "jari+git@iki.fi"; git config sendemail.f
 
 alias oath='ykman oath code -s $@ | pbcopy'
 
-# Usage:
-# awsCliSession <your-aws-profile-name>
-# Your AWS profile name should also match the yubikey OATH key name for this to work
-awsCliSession () {
-  mfa=$(aws iam list-mfa-devices --profile "$1" --query 'MFADevices[0].SerialNumber' --output text)
-  credentials=$(aws sts get-session-token --profile "$1" --serial-number "${mfa}" --token-code $(ykman oath accounts code -s "$1"))
-  export AWS_PROFILE=$1
-  export AWS_ACCESS_KEY_ID=$(echo $credentials | jq -r '.Credentials.AccessKeyId')
-  export AWS_SECRET_ACCESS_KEY=$(echo $credentials | jq -r '.Credentials.SecretAccessKey')
-  export AWS_SESSION_TOKEN=$(echo $credentials | jq -r '.Credentials.SessionToken')
-}
-
-alias awsLogout='unset AWS_PROFILE AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_SESSION_TOKEN'
-
 export NVM_DIR="$HOME/.nvm"
 source "$(brew --prefix nvm)/nvm.sh"
 source "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
