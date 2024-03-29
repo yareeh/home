@@ -39,3 +39,7 @@ function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;
 # Rust
 source "$HOME/.cargo/env"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+# Python pyenv
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
