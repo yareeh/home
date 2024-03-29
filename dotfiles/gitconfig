@@ -1,6 +1,6 @@
 [user]
 	name = Jari Mäkelä
-	email = jari+git@iki.fi
+	email = jari@iki.fi
 [core]
 	autocrlf = input
 	excludesfile = /Users/jari/.gitignore
