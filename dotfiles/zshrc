@@ -25,6 +25,14 @@ alias yadd-dev='yarn add -D'
 alias nadd='npm install -S -E'
 alias nadd-dev='npm install -D -E'
 
+# edit tmp file
+function tempcode() {
+  file=$(mktemp -t temp).$1
+  pbpaste >$file
+  code $file
+}
+alias tempjson='tempcode json'
+
 alias priva-git='git config user.email "jari+git@iki.fi"; git config sendemail.from "jari+git@iki.fi"'
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 #export PATH="$PATH:$HOME/.rvm/bin"
