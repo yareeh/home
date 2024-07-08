@@ -1,6 +1,7 @@
 [user]
 	name = Jari Mäkelä
 	email = jari@iki.fi
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDkjTiav5ww3t/3AO62EGia0DcvTlClRdcoggqaV2Kjq
 [core]
 	autocrlf = input
 	excludesfile = /Users/jari/.gitignore
@@ -63,3 +64,9 @@ change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --en
 	smudge = git-lfs smudge -- %f
 [diff "image"]
 	command = ~/git/albertine/ios/git-diff-image/git_diff_image
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
