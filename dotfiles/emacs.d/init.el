@@ -13,16 +13,16 @@
 (setq default-directory (concat (getenv "HOME") "/"))
 
 ;; Rust mode
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(package-initialize)
-(package-refresh-contents)
-(require 'rust-mode)
-(add-hook 'rust-mode-hook
-          (lambda () (setq indent-tabs-mode nil)))
-(setq rust-format-on-save t)
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
+;; (require 'package)
+;; (add-to-list 'package-archives
+;;              '("melpa" . "https://melpa.org/packages/") t)
+;; (package-initialize)
+;; (package-refresh-contents)
+;; (require 'rust-mode)
+;; (add-hook 'rust-mode-hook
+;;           (lambda () (setq indent-tabs-mode nil)))
+;; (setq rust-format-on-save t)
+;; (add-hook 'rust-mode-hook 'cargo-minor-mode)
 
 
 
