@@ -1,6 +1,6 @@
 [user]
 	name = Jari Mäkelä
-	email = jari@iki.fi
+	email = jari@lakeview.fi
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDkjTiav5ww3t/3AO62EGia0DcvTlClRdcoggqaV2Kjq
 [core]
 	autocrlf = input

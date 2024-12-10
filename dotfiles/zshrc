@@ -33,6 +33,8 @@ alias priva-git='git config user.email "jari+git@iki.fi"; git config sendemail.f
 
 alias oath='ykman oath code -s $@ | pbcopy'
 
+alias depversion="~/git/home/depversion.py"
+
 function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
 
 eval "$(mise activate zsh)"
