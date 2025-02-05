@@ -7,9 +7,7 @@ indent_style = space
 indent_size = 4
 
 # TypeScript and JavaScript indent with 2 spaces
-[*.ts]
-indent_size = 2
-[*.js]
+[*.{ts,tsx,js,jsx}]
 indent_size = 2
 
 # We recommend you to keep these unchanged
