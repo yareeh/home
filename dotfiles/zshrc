@@ -37,6 +37,10 @@ alias depversion="~/git/home/depversion.py"
 
 function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
 
+function astudio() {
+  (/Applications/Android\ Studio.app/Contents/MacOS/studio . >/dev/null 2>&1 &)
+}
+
 eval "$(mise activate zsh)"
 eval "$(mise hook-env -s zsh)"
 
