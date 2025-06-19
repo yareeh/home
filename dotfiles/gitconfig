@@ -42,6 +42,8 @@
 	pullr = pull --rebase
 	amend = commit --amend -C HEAD
 	diff-image = "!f() { cd -- \"${GIT_PREFIX:-.}\"; GIT_DIFF_IMAGE_ENABLED=1 git diff \"$@\"; }; f"
+	pr-dev = !gh pr create --base develop
+	pr-main = !gh pr create --base main
 [rerere]
 	enabled = 1
 [push]
