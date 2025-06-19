@@ -12,8 +12,8 @@ export TERM=xterm-color
 PATH=${PATH}:/Users/jari/git/boots/bin:/opt/homebrew/bin
 
 # OpenJDK
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
+export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk@17/include"
 
 # VSCode as default editor
 export EDITOR='cursor -w'
