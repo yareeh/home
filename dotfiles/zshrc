@@ -45,3 +45,32 @@ eval "$(mise activate zsh)"
 eval "$(mise hook-env -s zsh)"
 
 eval "$(direnv hook zsh)"
+export PATH="$HOME/.local/bin:$PATH"
+
+# Created by `pipx` on 2025-09-24 13:06:55
+export PATH="$PATH:/Users/jari/Library/Python/3.9/bin"
+
+alias orion_rdp_tunnel="az network bastion tunnel \
+--subscription '44592d61-1dd5-4f88-9b9a-de0ac0463e5b' \
+--name 'bast-or-prd-we-001' \
+--resource-group 'rg-or-bastion-prd-we-001' \
+--target-resource-id '/subscriptions/5a950a74-fc51-459d-ae52-61c3b80dc059/resourceGroups/rg-rhea-tools-dev-we-001/providers/Microsoft.Compute/virtualMachines/lazwerheadevt01' \
+--port 8293 \
+--resource-port 3389"
+
+alias orion_ssh_tunnel="az network bastion tunnel \
+--subscription '44592d61-1dd5-4f88-9b9a-de0ac0463e5b' \
+--name 'bast-or-prd-we-001' \
+--resource-group 'rg-or-bastion-prd-we-001' \
+--target-resource-id '/subscriptions/5a950a74-fc51-459d-ae52-61c3b80dc059/resourceGroups/rg-rhea-tools-dev-we-001/providers/Microsoft.Compute/virtualMachines/lazwerheadevt01' \
+--port 8290 \
+--resource-port 22"
+
+alias orion_ssh_forwards="ssh -N -p 8290 \
+-L 8291:aif-rhea-dev-sc-001.openai.azure.com:443 \
+-L 8292:strheabotdevwe001.blob.core.windows.net:443 \
+-L 8293:strheabotdevwe001.queue.core.windows.net:443 \
+-L 8294:strheascraperdevwe001.blob.core.windows.net:443 \
+-L 8295:strheascraperdevwe001.queue.core.windows.net:443 \
+-L 8296:srch-rhea-dev-we-001.search.windows.net:443 \
+lazwerheadevt01"
