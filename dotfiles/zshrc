@@ -18,13 +18,15 @@ unsetopt share_history
 
 # Antigen (conditional)
 if $IS_MAC; then
-    source "$(brew --prefix)/share/antigen/antigen.zsh"
+    [[ -f "$(brew --prefix)/share/antigen/antigen.zsh" ]] && source "$(brew --prefix)/share/antigen/antigen.zsh"
 else
     [[ -f /usr/share/zsh-antigen/antigen.zsh ]] && source /usr/share/zsh-antigen/antigen.zsh
     [[ -f ~/.antigen/antigen.zsh ]] && source ~/.antigen/antigen.zsh
 fi
-antigen bundle lukechilds/zsh-nvm
-antigen apply
+if command -v antigen >/dev/null; then
+    antigen bundle lukechilds/zsh-nvm
+    antigen apply
+fi
 
 alias grep='grep --color=auto'
 alias ssh='LANG=en ssh'
@@ -72,10 +74,12 @@ else
     }
 fi
 
-eval "$(mise activate zsh)"
-eval "$(mise hook-env -s zsh)"
+if command -v mise >/dev/null; then
+    eval "$(mise activate zsh)"
+    eval "$(mise hook-env -s zsh)"
+fi
 
-eval "$(direnv hook zsh)"
+command -v direnv >/dev/null && eval "$(direnv hook zsh)"
 export PATH="$HOME/.local/bin:$PATH"
 
 # Python path (macOS only)
