@@ -55,7 +55,7 @@ alias orion_rdp_tunnel="az network bastion tunnel \
 --name 'bast-or-prd-we-001' \
 --resource-group 'rg-or-bastion-prd-we-001' \
 --target-resource-id '/subscriptions/5a950a74-fc51-459d-ae52-61c3b80dc059/resourceGroups/rg-rhea-tools-dev-we-001/providers/Microsoft.Compute/virtualMachines/lazwerheadevt01' \
---port 8293 \
+--port 8300 \
 --resource-port 3389"
 
 alias orion_ssh_tunnel="az network bastion tunnel \
@@ -74,3 +74,5 @@ alias orion_ssh_forwards="ssh -N -p 8290 \
 -L 8295:strheascraperdevwe001.queue.core.windows.net:443 \
 -L 8296:srch-rhea-dev-we-001.search.windows.net:443 \
 lazwerheadevt01"
+
+alias largest_dot_dirs='du -sh ~/.??* 2>/dev/null | sort -h'
