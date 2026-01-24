@@ -1,10 +1,10 @@
 [user]
-	name = Jari Mäkelä
+	name = Jari Mäkelä
 	email = jari@lakeview.fi
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDkjTiav5ww3t/3AO62EGia0DcvTlClRdcoggqaV2Kjq
 [core]
 	autocrlf = input
-	excludesfile = /Users/jari/.gitignore
+	excludesfile = ~/.gitignore
 	attributesfile = ~/.gitattributes
 [color]
 	ui = auto
@@ -15,17 +15,9 @@
 [diff]
 	renamelimit = 0
 [merge]
-	tool = opendiff
 	conflictstyle = diff3
-[mergetool "diffmerge"]
-	cmd = diffmerge --merge --result=$MERGED $LOCAL $BASE $REMOTE
-	trustExitCode = true
 [mergetool]
 	keepBackup = false
-[diff]
-	tool = p4mergetool
-[difftool "diffmerge"]
-        cmd = diffmerge $LOCAL $REMOTE
 [alias]
 	br = branch
 	ci = commit -v
@@ -48,12 +40,7 @@
 	enabled = 1
 [push]
 	default = upstream
-  autoSetupRemote = true
-[mergetool "p4mergetool"]
-	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $PWD/$BASE $PWD/$REMOTE $PWD/$LOCAL $PWD/$MERGED
-	trustExitCode = false
-[difftool "p4mergetool"]
-	cmd = /Applications/p4merge.app/Contents/Resources/launchp4merge $LOCAL $REMOTE
+	autoSetupRemote = true
 
 # git change-commits GIT_COMMITTER_NAME "old name" "new name"
 change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f "
@@ -68,7 +55,9 @@ change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --en
 	command = ~/git/albertine/ios/git-diff-image/git_diff_image
 [gpg]
 	format = ssh
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [commit]
 	gpgsign = true
+
+# Platform-specific settings
+[include]
+	path = ~/.gitconfig-local

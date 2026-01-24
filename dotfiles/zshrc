@@ -2,14 +2,27 @@ if [ -f /etc/zshrc ]; then
 	source /etc/zshrc
 fi
 
+# OS detection
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    IS_MAC=true
+else
+    IS_MAC=false
+fi
+
 # oh-my-zsh
-export ZSH="/Users/jari/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 unsetopt share_history
 
-source "$(brew --prefix)/share/antigen/antigen.zsh"
+# Antigen (conditional)
+if $IS_MAC; then
+    source "$(brew --prefix)/share/antigen/antigen.zsh"
+else
+    [[ -f /usr/share/zsh-antigen/antigen.zsh ]] && source /usr/share/zsh-antigen/antigen.zsh
+    [[ -f ~/.antigen/antigen.zsh ]] && source ~/.antigen/antigen.zsh
+fi
 antigen bundle lukechilds/zsh-nvm
 antigen apply
 
@@ -17,29 +30,47 @@ alias grep='grep --color=auto'
 alias ssh='LANG=en ssh'
 
 # Emacs Client
-alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c'
+if $IS_MAC; then
+    alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c'
+else
+    alias ec='emacsclient -c'
+fi
 
 # edit tmp file
 function tempcode() {
-  file=$(mktemp -t temp).$1
-  pbpaste >$file
-  code $file
+    file=$(mktemp -t temp).$1
+    if $IS_MAC; then
+        pbpaste >$file
+    else
+        xclip -selection clipboard -o >$file
+    fi
+    code $file
 }
 alias tempjson='tempcode json'
 
 alias priva-git='git config user.email "jari+git@iki.fi"; git config sendemail.from "jari+git@iki.fi"'
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-#export PATH="$PATH:$HOME/.rvm/bin"
 
-alias oath='ykman oath code -s $@ | pbcopy'
+# Yubikey oath
+if $IS_MAC; then
+    alias oath='ykman oath code -s $@ | pbcopy'
+else
+    alias oath='ykman oath code -s $@ | xclip -selection clipboard'
+fi
 
 alias depversion="~/git/home/depversion.py"
 
 function gi() { curl -sLw n https://www.toptal.com/developers/gitignore/api/$@ ;}
 
-function astudio() {
-  (/Applications/Android\ Studio.app/Contents/MacOS/studio . >/dev/null 2>&1 &)
-}
+# Android Studio
+if $IS_MAC; then
+    function astudio() {
+        (/Applications/Android\ Studio.app/Contents/MacOS/studio . >/dev/null 2>&1 &)
+    }
+else
+    function astudio() {
+        (android-studio . >/dev/null 2>&1 &)
+    }
+fi
 
 eval "$(mise activate zsh)"
 eval "$(mise hook-env -s zsh)"
@@ -47,8 +78,10 @@ eval "$(mise hook-env -s zsh)"
 eval "$(direnv hook zsh)"
 export PATH="$HOME/.local/bin:$PATH"
 
-# Created by `pipx` on 2025-09-24 13:06:55
-export PATH="$PATH:/Users/jari/Library/Python/3.9/bin"
+# Python path (macOS only)
+if $IS_MAC; then
+    export PATH="$PATH:$HOME/Library/Python/3.9/bin"
+fi
 
 alias orion_rdp_tunnel="az network bastion tunnel \
 --subscription '44592d61-1dd5-4f88-9b9a-de0ac0463e5b' \

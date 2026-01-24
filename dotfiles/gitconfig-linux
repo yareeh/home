@@ -1,0 +1,7 @@
+# Linux-specific git configuration
+[merge]
+	tool = meld
+[diff]
+	tool = meld
+[gpg "ssh"]
+	program = /opt/1Password/op-ssh-sign

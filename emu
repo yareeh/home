@@ -1,6 +1,13 @@
 #!/bin/sh
 
-emulator="$HOME/Library/Android/sdk/emulator/emulator"
+# Android SDK location differs by platform
+if [ "$(uname)" = "Darwin" ]; then
+    SDK_ROOT="$HOME/Library/Android/sdk"
+else
+    SDK_ROOT="$HOME/Android/Sdk"
+fi
+
+emulator="$SDK_ROOT/emulator/emulator"
 
 configs=($($emulator -list-avds))
 
